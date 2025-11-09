@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\catta\Desktop\progetto_driverless\build\_deps\raylib-subbuild\CMakeFiles\c5bc23ee1aee9f6e2b02714bc84e828c\raylib-populate-mkdir.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\catta\Desktop\progetto_driverless\build\_deps\raylib-subbuild\CMakeFiles\c5bc23ee1aee9f6e2b02714bc84e828c\raylib-populate-download.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\catta\Desktop\progetto_driverless\build\_deps\raylib-subbuild\CMakeFiles\c5bc23ee1aee9f6e2b02714bc84e828c\raylib-populate-update.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\catta\Desktop\progetto_driverless\build\_deps\raylib-subbuild\CMakeFiles\c5bc23ee1aee9f6e2b02714bc84e828c\raylib-populate-patch.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\catta\Desktop\progetto_driverless\build\_deps\raylib-subbuild\CMakeFiles\c5bc23ee1aee9f6e2b02714bc84e828c\raylib-populate-configure.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\catta\Desktop\progetto_driverless\build\_deps\raylib-subbuild\CMakeFiles\c5bc23ee1aee9f6e2b02714bc84e828c\raylib-populate-build.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\catta\Desktop\progetto_driverless\build\_deps\raylib-subbuild\CMakeFiles\c5bc23ee1aee9f6e2b02714bc84e828c\raylib-populate-install.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\catta\Desktop\progetto_driverless\build\_deps\raylib-subbuild\CMakeFiles\c5bc23ee1aee9f6e2b02714bc84e828c\raylib-populate-test.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\catta\Desktop\progetto_driverless\build\_deps\raylib-subbuild\CMakeFiles\951955ff57d046e7a55651a8ba799fbc\raylib-populate-complete.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\catta\Desktop\progetto_driverless\build\_deps\raylib-subbuild\CMakeFiles\1d05d96962dc57b720236d6c431e80c0\raylib-populate.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\catta\Desktop\progetto_driverless\build\_deps\raylib-subbuild\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="C:\Users\catta\Desktop\progetto_driverless\build\_deps\raylib-subbuild\CMakeFiles\raylib-populate" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{CA02D919-DCBE-3BB2-A1DF-AB58FA2A6D6B}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

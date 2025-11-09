@@ -14,21 +14,28 @@ int main() {
     double L = 2.5; 
     double start_x = screenWidth / 2.0;
     double start_y = screenHeight / 2.0;
-    double start_theta = 0.0; 
+    double start_theta = 2.5; 
     double start_velocity = 0.0;
     
     KinematicModel car(start_x, start_y, start_theta, start_velocity, L);
 
 
     // --- 3. SETUP SIMULAZIONE ---
+    double Kp = 0.25;
     double acceleration_command = 10.0; 
-    double steer_command = 0.5;     
+    double target_theta = 0.0;
+      
    
     // --- 4. LOOP SIMULAZIONE ---
     while (!WindowShouldClose()) {
         
        
         double dt = GetFrameTime();
+        double current_theta = car.getTheta();
+
+        double e = target_theta - current_theta;
+
+        double steer_command = Kp * e;
 
     
         car.update(acceleration_command, steer_command, dt);
