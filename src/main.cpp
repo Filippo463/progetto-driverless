@@ -13,23 +13,47 @@ int main() {
     // --- 2. SETUP AUTO ---
     double L = 2.5; 
     double start_x = screenWidth / 2.0;
-    double start_y = screenHeight / 2.0;
-    double start_theta = 0.0; 
+    double start_y = 500;
+    double start_theta = 2.5; 
     double start_velocity = 0.0;
     
     KinematicModel car(start_x, start_y, start_theta, start_velocity, L);
 
 
     // --- 3. SETUP SIMULAZIONE ---
-    double acceleration_command = 10.0; 
-    double steer_command = 0.5;     
+    double Kp_t = 0.25;
+    double Kp_y = 0.001;
+    double acceleration_command = 1.0; 
+    double target_theta = 0.0;
+    double target_y = screenHeight / 2.0;
+
+    double max_steering_control = 1;
+
+
+      
    
     // --- 4. LOOP SIMULAZIONE ---
     while (!WindowShouldClose()) {
         
        
         double dt = GetFrameTime();
+        double current_theta = car.getTheta();
+        double current_y = car.getY();
 
+
+        double error_t = target_theta - current_theta;
+        double error_y = target_y - current_y;
+
+        //double steer_command = Kp_t * error_t;
+        double steer_command = Kp_y * error_y;
+
+        if (steer_command > max_steering_control){
+            steer_command = max_steering_control;
+        } else {
+            if (steer_command < max_steering_control){
+                steer_command = -max_steering_control;
+            }
+        }
     
         car.update(acceleration_command, steer_command, dt);
 
@@ -43,6 +67,8 @@ int main() {
             DrawText("Stai eseguendo il Livello 1!", 10, 10, 20, LIGHTGRAY);
             DrawText(TextFormat("X: %.1f", car.getX()), 10, 30, 20, LIGHTGRAY);
             DrawText(TextFormat("Y: %.1f", car.getY()), 10, 50, 20, LIGHTGRAY);
+
+           
 
         EndDrawing(); 
     }

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\catta\Desktop\progetto_driverless\build\CMakeFiles\e8c3760f78edd932e87a1dcb391eaf20\INSTALL_force.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{9429FCC1-634C-3EA5-AA0F-6F9B432A14CF}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

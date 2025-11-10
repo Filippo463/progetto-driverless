@@ -1,0 +1,46 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "C:/Users/catta/Desktop/progetto_driverless/build/_deps/raylib-subbuild/CMakeFiles/raylib-populate"
+		},
+		{
+			"file" : "C:/Users/catta/Desktop/progetto_driverless/build/_deps/raylib-subbuild/CMakeFiles/1d05d96962dc57b720236d6c431e80c0/raylib-populate.rule"
+		},
+		{
+			"file" : "C:/Users/catta/Desktop/progetto_driverless/build/_deps/raylib-subbuild/CMakeFiles/951955ff57d046e7a55651a8ba799fbc/raylib-populate-complete.rule"
+		},
+		{
+			"file" : "C:/Users/catta/Desktop/progetto_driverless/build/_deps/raylib-subbuild/CMakeFiles/c5bc23ee1aee9f6e2b02714bc84e828c/raylib-populate-build.rule"
+		},
+		{
+			"file" : "C:/Users/catta/Desktop/progetto_driverless/build/_deps/raylib-subbuild/CMakeFiles/c5bc23ee1aee9f6e2b02714bc84e828c/raylib-populate-configure.rule"
+		},
+		{
+			"file" : "C:/Users/catta/Desktop/progetto_driverless/build/_deps/raylib-subbuild/CMakeFiles/c5bc23ee1aee9f6e2b02714bc84e828c/raylib-populate-download.rule"
+		},
+		{
+			"file" : "C:/Users/catta/Desktop/progetto_driverless/build/_deps/raylib-subbuild/CMakeFiles/c5bc23ee1aee9f6e2b02714bc84e828c/raylib-populate-install.rule"
+		},
+		{
+			"file" : "C:/Users/catta/Desktop/progetto_driverless/build/_deps/raylib-subbuild/CMakeFiles/c5bc23ee1aee9f6e2b02714bc84e828c/raylib-populate-mkdir.rule"
+		},
+		{
+			"file" : "C:/Users/catta/Desktop/progetto_driverless/build/_deps/raylib-subbuild/CMakeFiles/c5bc23ee1aee9f6e2b02714bc84e828c/raylib-populate-patch.rule"
+		},
+		{
+			"file" : "C:/Users/catta/Desktop/progetto_driverless/build/_deps/raylib-subbuild/CMakeFiles/c5bc23ee1aee9f6e2b02714bc84e828c/raylib-populate-test.rule"
+		},
+		{
+			"file" : "C:/Users/catta/Desktop/progetto_driverless/build/_deps/raylib-subbuild/CMakeFiles/c5bc23ee1aee9f6e2b02714bc84e828c/raylib-populate-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"raylib-populate"
+		],
+		"name" : "raylib-populate"
+	}
+}
