@@ -53,7 +53,10 @@ int main() {
 
     // --- SETUP SIMULAZIONE ---
     double Kp_t = 0.25;
-    double Kp_y = 0.01;
+
+    double error_integral = 0.0;
+    double Ki = 0.1;
+
     double acceleration_command = 0.5; 
     double steer_command = 0.0;
 
@@ -122,8 +125,11 @@ int main() {
             error_theta += 2.0 * M_PI; 
         }
 
-        double desired_steer = Kp_t * error_theta;
+        //calcolo errore integrale
+        error_integral += error_theta * dt;
 
+        //nuovo calcolo desired_steer
+        double desired_steer = (Kp_t * error_theta) + (Ki * error_integral);
 
 
         if (desired_steer > max_steering_control) {
