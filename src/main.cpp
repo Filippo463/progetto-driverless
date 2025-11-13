@@ -45,8 +45,13 @@ int main() {
     double L = 2.5; 
     double start_x = path[0].x;
     double start_y = path[0].y;
-    double start_theta = 0.0; 
     double start_velocity = 0.0;
+
+
+    //calcolo l'angolo di partenza corretto
+    double dx_start = path[1].x - path[0].x;
+    double dy_start = path[1].y - path[0].y;
+    double start_theta = atan2(dy_start, dx_start);
     
     KinematicModel car(start_x, start_y, start_theta, start_velocity, L);
 
@@ -132,12 +137,21 @@ int main() {
         double desired_steer = (Kp_t * error_theta) + (Ki * error_integral);
 
 
+        bool is_saturated = false; // Flag per Anti-Windup
+
         if (desired_steer > max_steering_control) {
             steer_command = max_steering_control;
+            is_saturated = true;
         } else if (desired_steer < -max_steering_control) { 
             steer_command = -max_steering_control;
+            is_saturated = true;
         } else {
             steer_command = desired_steer;
+        }
+
+        // --- LOGICA ANTI-WINDUP ---
+        if (!is_saturated) {
+            error_integral += error_theta * dt;
         }
         
         car.update(acceleration_command, steer_command, dt);
