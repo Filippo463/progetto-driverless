@@ -12,6 +12,7 @@ public:
     double getX() const;
     double getY() const;
     double getTheta() const;
+    double getVelocity() const;
 
 private:
     double L;

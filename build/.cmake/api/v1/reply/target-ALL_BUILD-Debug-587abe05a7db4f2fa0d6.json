@@ -5,7 +5,7 @@
 		"commands" : [],
 		"files" : 
 		[
-			"CMakeLists.txt"
+			"build/_deps/raylib-src/CMakeLists.txt"
 		],
 		"nodes" : 
 		[
@@ -17,13 +17,10 @@
 	"dependencies" : 
 	[
 		{
-			"id" : "glfw::@9de86fbe87260ae8e66c"
-		},
-		{
-			"id" : "my_car_simulator::@6890427a1f51a3e7e1df"
-		},
-		{
 			"id" : "raylib::@4dc3a4644cf4ded08c01"
+		},
+		{
+			"id" : "glfw::@9de86fbe87260ae8e66c"
 		},
 		{
 			"id" : "ZERO_CHECK::@6890427a1f51a3e7e1df"
@@ -33,13 +30,13 @@
 	{
 		"name" : "CMakePredefinedTargets"
 	},
-	"id" : "ALL_BUILD::@6890427a1f51a3e7e1df",
+	"id" : "ALL_BUILD::@1f4ba659214c9866b353",
 	"isGeneratorProvided" : true,
 	"name" : "ALL_BUILD",
 	"paths" : 
 	{
-		"build" : ".",
-		"source" : "."
+		"build" : "_deps/raylib-build",
+		"source" : "build/_deps/raylib-src"
 	},
 	"sources" : [],
 	"type" : "UTILITY"

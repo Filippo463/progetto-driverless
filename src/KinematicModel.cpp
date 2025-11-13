@@ -21,6 +21,10 @@ double KinematicModel::getTheta() const {
     return this->state_theta;
 }
 
+double KinematicModel::getVelocity() const{
+    return this->current_velocity;
+}
+
 
 void KinematicModel::update(double a, double delta, double dt) {
     
