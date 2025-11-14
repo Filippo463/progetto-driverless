@@ -1,10 +1,10 @@
-
 #include <iostream>
 #include "KinematicModel.h"
 #include "raylib.h" 
 #include <vector>
 #include <corecrt_math_defines.h>
 
+//Funzione per calcolare la distanza tra due punti
 double getDistance(Vector2 p1, Vector2 p2) {
     double dx = p1.x - p2.x;
     double dy = p1.y - p2.y;
@@ -38,7 +38,6 @@ int main() {
         path.push_back(Vector2{(float)x, (float)y});
     }
 
-    double Ld = 100.0; //Lookahead Distance
 
 
     // --- SETUP AUTO ---
@@ -56,13 +55,16 @@ int main() {
     KinematicModel car(start_x, start_y, start_theta, start_velocity, L);
 
 
-    // --- SETUP SIMULAZIONE ---
-    double Kp_t = 0.25;
+    // --- SETUP SIMULAZIONE (Guadagni per Stanley) ---
+    
+    // Kp_t ora è il guadagno per l'ERRORE DI ANGOLO (theta_e)
+    double Kp_t = 0.25; 
+    // K_stanley è il guadagno per l'ERRORE LATERALE (e_y)
+    double K_stanley = 0.5; // (Da tarare!)
 
-    double error_integral = 0.0;
-    double Ki = 0.1;
+    
 
-    double acceleration_command = 0.5; 
+    double acceleration_command = 0.5; // Teniamo l'accelerazione bassa per il tuning
     double steer_command = 0.0;
 
     
@@ -74,7 +76,10 @@ int main() {
     // --- LOOP SIMULAZIONE ---
     while (!WindowShouldClose()) {
         
-        //trovo il Waypoint più vicino a me
+        // --- LOGICA STANLEY CONTROLLER ---
+        
+
+        //trovo il Waypoint più vicino
         Vector2 current_point = {(float)car.getX(), (float)car.getY()};
         double min_distance = 100000.0;
         int min_index = 0;
@@ -86,43 +91,35 @@ int main() {
             }
         }
         
+        //calcolo errore laterale (e_y) con segno
+        Vector2 center_point = {(float)center_x, (float)center_y};
+        double dist_from_center = getDistance(current_point, center_point);
 
-        //trovo il waypoint più vicino al mio lookahead distance
-        int target_index = min_index; 
-
-        for (int i = min_index; i < path.size(); i++) {
-            double d = getDistance(current_point, path[i]);
-            if (d > Ld) {
-                target_index = i;
-                break; 
-            }
-            target_index = i; 
-        }
-
-        //caso in cui sono alla fine del percorso
-        if (target_index >= path.size()) {
-            target_index = path.size() - 1;
-        }
-
-        Vector2 target_point = path[target_index];
-
-        //trovo l'angolo target
-        double dx = target_point.x - current_point.x;
-        double dy = target_point.y - current_point.y;
-
-        double target_theta = atan2(dy, dx);
-
-
-
+        double e_y = dist_from_center - radius; 
+        // e_y > 0  => FUORI dal cerchio
+        // e_y < 0  => DENTRO il cerchio
         
-        double dt = GetFrameTime();
 
-        //calcolo errore e desired steer
+        //calcolo errore di angolo
+        
+        //trovo angolo del percorso nel punto 'min_index'
+        int next_index = min_index + 1;
+        //wrap-around
+        if (next_index >= path.size()) {
+            next_index = 0;
+        }
+        Vector2 path_point_start = path[min_index];
+        Vector2 path_point_end = path[next_index];
+
+        double dx_path = path_point_end.x - path_point_start.x;
+        double dy_path = path_point_end.y - path_point_start.y;
+        double path_theta = atan2(dy_path, dx_path); // Angolo del percorso
+
+        // Calcolo errore di angolo
         double current_theta = car.getTheta();
+        double error_theta = path_theta - current_theta;
 
-        double error_theta = target_theta - current_theta;
-
-        // normalizzazione 
+        // normalizzazione
         while (error_theta > M_PI) {
             error_theta -= 2.0 * M_PI; 
         }
@@ -130,30 +127,33 @@ int main() {
             error_theta += 2.0 * M_PI; 
         }
 
-        //calcolo errore integrale
-        error_integral += error_theta * dt;
+        //calcolo formula Stanley
+        
+        double current_v = car.getVelocity();
+        //aggiungo 'epsilon' per evitare divisione per zero quando v=0
+        double v_stable = current_v + 0.1; 
 
-        //nuovo calcolo desired_steer
-        double desired_steer = (Kp_t * error_theta) + (Ki * error_integral);
+        // angolo
+        double term_heading = Kp_t * error_theta; 
+        // posizione
+        double term_position = atan(K_stanley * e_y / v_stable);
 
+        double desired_steer = term_heading + term_position;
+        
+        
+        double dt = GetFrameTime();
 
-        bool is_saturated = false; // Flag per Anti-Windup
 
         if (desired_steer > max_steering_control) {
             steer_command = max_steering_control;
-            is_saturated = true;
         } else if (desired_steer < -max_steering_control) { 
             steer_command = -max_steering_control;
-            is_saturated = true;
         } else {
             steer_command = desired_steer;
         }
-
-        // --- LOGICA ANTI-WINDUP ---
-        if (!is_saturated) {
-            error_integral += error_theta * dt;
-        }
         
+        
+
         car.update(acceleration_command, steer_command, dt);
 
         BeginDrawing(); 
@@ -163,11 +163,14 @@ int main() {
           
             DrawCircle((int)car.getX(), (int)car.getY(), 8.0f, RED);
             
-            DrawText("Stai eseguendo il Livello 1!", 10, 10, 20, LIGHTGRAY);
+            DrawText("Stai eseguendo il Livello 5 (Stanley)!", 10, 10, 20, LIGHTGRAY);
             DrawText(TextFormat("X: %.1f", car.getX()), 10, 30, 20, LIGHTGRAY);
             DrawText(TextFormat("Y: %.1f", car.getY()), 10, 50, 20, LIGHTGRAY);
             DrawText(TextFormat("V: %.1f", car.getVelocity()), 10, 70, 20, LIGHTGRAY);
+            DrawText(TextFormat("e_y: %.1f", e_y), 10, 90, 20, LIGHTGRAY); // Debug Errore Laterale
+            DrawText(TextFormat("e_th: %.1f", error_theta), 10, 110, 20, LIGHTGRAY); // Debug Errore Angolo
 
+            // Disegno del percorso
             for (size_t i = 0; i < path.size() - 1; i++) {
                 DrawLineV(path[i], path[i+1], LIME);
             }

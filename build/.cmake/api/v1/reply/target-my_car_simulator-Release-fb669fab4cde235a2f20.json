@@ -2,10 +2,10 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "RelWithDebInfo/my_car_simulator.exe"
+			"path" : "Release/my_car_simulator.exe"
 		},
 		{
-			"path" : "RelWithDebInfo/my_car_simulator.pdb"
+			"path" : "Release/my_car_simulator.pdb"
 		}
 	],
 	"backtrace" : 1,
@@ -62,7 +62,7 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "/DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /Zi /O2 /Ob1 /DNDEBUG -std:c++17"
+					"fragment" : "/DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /O2 /Ob2 /DNDEBUG -std:c++17"
 				}
 			],
 			"defines" : 
@@ -111,14 +111,14 @@
 	[
 		{
 			"backtrace" : 2,
-			"id" : "raylib::@4dc3a4644cf4ded08c01"
-		},
-		{
-			"backtrace" : 2,
 			"id" : "glfw::@9de86fbe87260ae8e66c"
 		},
 		{
 			"id" : "ZERO_CHECK::@6890427a1f51a3e7e1df"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "raylib::@4dc3a4644cf4ded08c01"
 		}
 	],
 	"id" : "my_car_simulator::@6890427a1f51a3e7e1df",
@@ -127,16 +127,16 @@
 		"commandFragments" : 
 		[
 			{
-				"fragment" : "/DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /Zi /O2 /Ob1 /DNDEBUG",
+				"fragment" : "/DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /O2 /Ob2 /DNDEBUG",
 				"role" : "flags"
 			},
 			{
-				"fragment" : "/machine:x64 /debug /INCREMENTAL /subsystem:console",
+				"fragment" : "/machine:x64 /INCREMENTAL:NO /subsystem:console",
 				"role" : "flags"
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "_deps\\raylib-build\\raylib\\RelWithDebInfo\\raylib.lib",
+				"fragment" : "_deps\\raylib-build\\raylib\\Release\\raylib.lib",
 				"role" : "libraries"
 			},
 			{
@@ -156,7 +156,7 @@
 			},
 			{
 				"backtrace" : 4,
-				"fragment" : "_deps\\raylib-build\\raylib\\external\\glfw\\src\\RelWithDebInfo\\glfw3.lib",
+				"fragment" : "_deps\\raylib-build\\raylib\\external\\glfw\\src\\Release\\glfw3.lib",
 				"role" : "libraries"
 			},
 			{
